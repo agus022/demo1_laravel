@@ -21,4 +21,20 @@ class HomeLandController extends Controller
     public function rent(){
         return view('homeland.rent');
     }
+
+    public function about(){
+        return view('homeland.about');
+    }
+
+    public function login(){
+        return view('homeland.login');
+    }
+
+    public function register(){
+        return view('homeland.register');
+    }
+
+    public function properties(){
+        return view('homeland.properties');
+    }
 }
