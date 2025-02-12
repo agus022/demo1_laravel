@@ -10,7 +10,7 @@ class HomeLandController extends Controller
     public function index(){
 
         $properties =Property::all();
-        return view('homeland.index');
+        return view('homeland.index', compact('properties'));
     }
 
     public function contact(){
