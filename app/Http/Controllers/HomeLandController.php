@@ -40,4 +40,10 @@ class HomeLandController extends Controller
     public function properties(){
         return view('homeland.properties');
     }
+
+    public function property_details($property_id){
+        $property =Property::find($property_id);
+
+        return view('homeland.property_details', compact ('property'));
+    }
 }

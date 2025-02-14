@@ -88,13 +88,13 @@
                 @foreach ($properties as $propertie)
                 <div class="col-md-6 col-lg-4 mb-4">
                         <div class="property-entry h-100">
-                            <a href="#" class="property-thumbnail">
+                            <a href="{{ route('property_details', $propertie->id) }}" class="property-thumbnail">
                                 <div class="offer-type-wrap">
                                     <span class="offer-type bg-danger">{{$propertie->offer_type}}</span>
                                     <span class="offer-type bg-success">Rent</span>
                                 </div>
                                 {{-- recorre todas las imagenes pero unicamente se muestra la primera  --}}
-                                @foreach (json_decode($propertie->$images) as $img)
+                                @foreach (json_decode($propertie->images) as $img)
                                     @if ($loop->first)
                                         <img src="{{asset('images')}}/{{$img}}" alt="Image" class="img-fluid">
                                         @break
