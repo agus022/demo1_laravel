@@ -17,7 +17,7 @@ Route::get('/hello/{name?}', function (string $name = "PEPE") { //valor NO oblig
 Route::get('/services', [SiteController::class,'services']);
 
 Route::get('/', [HomeLandController::class,'index'])->name('home');
-Route::get('/property_details/{property_id}', [HomeLandController::class,'property_details'])->name('property_details');
+Route::match(['get','post'], '/property_details/{property_id}', [HomeLandController::class,'property_details'])->name('property_details');
 Route::get('/buy', [HomeLandController::class,'buy'])->name('buy');
 Route::get('/rent', [HomeLandController::class,'rent'])->name('rent');
 Route::get('/properties/{property_type_id}', [HomeLandController::class,'properties'])->name('property_listing_type');
