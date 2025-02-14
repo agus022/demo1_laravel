@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Property;
+use App\Models\PropertyListingType;
+
 
 class HomeLandController extends Controller
 {
@@ -43,6 +45,7 @@ class HomeLandController extends Controller
 
     public function property_details($property_id){
         $property =Property::find($property_id);
+        //$propertyType=PropertyListingType::find($property->property_listing_type_id);
 
         return view('homeland.property_details', compact ('property'));
     }

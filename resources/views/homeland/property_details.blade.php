@@ -27,7 +27,7 @@
           <div class="bg-white property-body border-bottom border-left border-right">
             <div class="row mb-5">
               <div class="col-md-6">
-                <strong class="text-success h1 mb-3">$  {{ $property-> getPriceAsCurrency()}} </strong>
+                <strong class="text-success h1 mb-3">{{ $property-> getPriceAsCurrency()}} </strong>
               </div>
               <div class="col-md-6">
                 <ul class="property-specs-wrap mb-3 mb-lg-0  float-lg-right">
@@ -52,7 +52,7 @@
             <div class="row mb-5">
               <div class="col-md-6 col-lg-4 text-center border-bottom border-top py-3">
                 <span class="d-inline-block text-black mb-0 caption-text">Home Type</span>
-                <strong class="d-block">Condo</strong>
+                <strong class="d-block">{{ $property->list_type->name }}</strong>
               </div>
               <div class="col-md-6 col-lg-4 text-center border-bottom border-top py-3">
                 <span class="d-inline-block text-black mb-0 caption-text">Year Built</span>
@@ -60,7 +60,11 @@
               </div>
               <div class="col-md-6 col-lg-4 text-center border-bottom border-top py-3">
                 <span class="d-inline-block text-black mb-0 caption-text">Price/Sqft</span>
-                <strong class="d-block">$ </strong>
+                <strong class="d-block">{{$property->getPriceBySquareFeet() }}</strong>
+              </div>
+              <div class="col-md-6 col-lg-4 text-center border-bottom border-top py-3">
+                <span class="d-inline-block text-black mb-0 caption-text">City</span>
+                <strong class="d-block">{{$property->city->name }}</strong>
               </div>
             </div>
             <h2 class="h4 text-black">More Info</h2>
