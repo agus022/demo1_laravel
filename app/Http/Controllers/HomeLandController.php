@@ -21,11 +21,19 @@ class HomeLandController extends Controller
     }
 
     public function buy(){
-        return view('homeland.buy');
+        $properties = Property::where("offer_type","For Sale")->get();
+        return view('homeland.buy', compact('properties'));
     }
 
     public function rent(){
-        return view('homeland.rent');
+        //$properties = Property::all();
+        $properties = Property::where("offer_type","For Rent")->get();
+        return view('homeland.rent',  compact('properties')) ;
+    }
+
+    public function properties_listing_type($property_listing_type_id){
+        $properties = PropertyListingType::find($property_listing_type_id)->properties;
+        return view('homeland.index', compact('properties'));
     }
 
     public function about(){
@@ -41,11 +49,27 @@ class HomeLandController extends Controller
     }
 
     public function properties(){
-        return view('homeland.properties');
+        $properties =Property::all();
+        return view('homeland.properties', compact('properties'));
     }
 
     public function property_details(Request $request, $property_id){
+
         if($request->isMethod("POST")){
+            //validate the form data using Laravel's validation rules and messages.a
+            $request->validate([
+                'name' => 'required|string|max:255',
+                'email' => 'required|email|max:50',
+                'phone' => 'required|max:20|regex:/^[0-9+\-() ]+$/',
+                'message' => 'required|string|max:1000',
+            ],[
+                'name.required' => 'The name field is required.',
+                'email.required' => 'The email field is required.',
+                'email.email' => 'The email must be a valid email address.',
+                'phone.regex' => 'The phone number format is invalid.',
+                'message.required' => 'The message field is required.',
+
+            ]);
             $contact = new ContactAgent();
             $contact->name=$request->input('name');
             $contact->email=$request->input('email');

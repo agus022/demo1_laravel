@@ -86,10 +86,6 @@
                                 </div>
                             @endforeach
 
-                            <div class="col-sm-6 col-md-4 col-lg-3">
-                                <a href="images/img_1.jpg" class="image-popup gal-item"><img src="images/img_1.jpg"
-                                        alt="Image" class="img-fluid"></a>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -118,21 +114,19 @@
                             @csrf
                             <div class="form-group">
                                 <label for="name">Name</label>
-                                <input type="text" id="name" name="name" class="form-control">
+                                <input type="text" id="name" name="name" class="form-control" value="{{  old('name') }}">
                             </div>
                             <div class="form-group">
                                 <label for="email">Email</label>
-                                <input type="email" id="email" name="email" class="form-control">
+                                <input type="email" id="email" name="email" class="form-control" value="{{ old('email') }}">
                             </div>
                             <div class="form-group">
                                 <label for="phone">Phone</label>
-                                <input type="text" id="phone" name="phone" class="form-control">
+                                <input type="text" id="phone" name="phone" class="form-control" value="{{  old('phone') }}">
                             </div>
                             <div class="form-group">
                                 <label for="phone">Message</label>
-                                <textarea id="message" name="message" class="form-control" rows="5">
-
-                </textarea>
+                                <textarea id="message" name="message" class="form-control" rows="5">{{  old('message') }}</textarea>
                             </div>
                             <div class="form-group">
                                 <input type="submit" id="phone" class="btn btn-primary" value="Send Message">

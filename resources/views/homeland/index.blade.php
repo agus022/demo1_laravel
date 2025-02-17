@@ -91,7 +91,6 @@
                             <a href="{{ route('property_details', $propertie->id) }}" class="property-thumbnail">
                                 <div class="offer-type-wrap">
                                     <span class="offer-type bg-danger">{{$propertie->offer_type}}</span>
-                                    <span class="offer-type bg-success">Rent</span>
                                 </div>
                                 {{-- recorre todas las imagenes pero unicamente se muestra la primera  --}}
                                 @foreach (json_decode($propertie->images) as $img)

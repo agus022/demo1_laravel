@@ -45,7 +45,7 @@
         <div class="container py-1">
           <div class="row align-items-center">
             <div class="col-8 col-md-8 col-lg-4">
-              <h1 class="mb-0"><a href="index.html" class="text-white h2 mb-0"><strong>Homeland<span class="text-danger">.</span></strong></a></h1>
+              <h1 class="mb-0"><a href="/" class="text-white h2 mb-0"><strong>Homeland<span class="text-danger">.</span></strong></a></h1>
             </div>
             <div class="col-4 col-md-4 col-lg-8">
               <nav class="site-navigation text-right text-md-right" role="navigation">
@@ -61,9 +61,9 @@
                   <li class="has-children">
                     <a href="/properties">Properties</a>
                     <ul class="dropdown arrow-top">
-                      <li><a href="#">Condo</a></li>
-                      <li><a href="#">Property Land</a></li>
-                      <li><a href="#">Commercial Building</a></li>
+                      <li><a href="{{ }}">Condo</a></li>
+                      <li><a href="">Property Land</a></li>
+                      <li><a href="">Commercial Building</a></li>
 
                     </ul>
                   </li>
