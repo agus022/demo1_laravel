@@ -61,10 +61,9 @@
                   <li class="has-children">
                     <a href="/properties">Properties</a>
                     <ul class="dropdown arrow-top">
-                      <li><a href="{{ }}">Condo</a></li>
-                      <li><a href="">Property Land</a></li>
-                      <li><a href="">Commercial Building</a></li>
-
+                      <li><a href="{{ route ('properties_listing_type', 1)}}">Condo</a></li>
+                      <li><a href="{{ route ('properties_listing_type', 2)}}">Commercial Building</a></li>
+                      <li><a href="{{ route ('properties_listing_type', 3)}}">Property Land</a></li>
                     </ul>
                   </li>
                   <li><a href="/about">About</a></li>

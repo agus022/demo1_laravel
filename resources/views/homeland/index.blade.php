@@ -107,21 +107,24 @@
                                 <span class="property-location d-block mb-3"><span class="property-icon icon-room"></span>
                                 {{$propertie->description}}</span>
                                 <strong class="property-price text-primary mb-3 d-block text-success">$ {{ number_format($propertie->price, 2, '.', ',') }}</strong>
-                                <ul class="property-specs-wrap mb-3 mb-lg-0">
-                                    <li>
+                                <ul class="property-specs-wrap mb-3 mb-lg-0 row mb-3">
+                                    <li class="col-lg-3">
                                         <span class="property-specs">Beds</span>
                                         <span class="property-specs-number">{{$propertie->bedrooms}} <sup>+</sup></span>
 
                                     </li>
-                                    <li>
+                                    <li class="col-lg-3">
                                         <span class="property-specs">Baths</span>
                                         <span class="property-specs-number">{{$propertie->bathrooms}}</span>
 
                                     </li>
-                                    <li>
+                                    <li class="col-lg-3">
                                         <span class="property-specs">SQ FT</span>
                                         <span class="property-specs-number">{{$propertie->sq_ft}}</span>
-
+                                    </li>
+                                    <li class="col">
+                                        <span class="property-specs ">Type</span>
+                                        <span class="property-specs-number"> {{$propertie->list_type->name}}</span>
                                     </li>
                                 </ul>
 

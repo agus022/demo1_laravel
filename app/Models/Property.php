@@ -20,7 +20,6 @@ class Property extends Model
         return $this->belongsTo(City::class);
     }
 
-
     public function getPriceAsCurrency(){
         return Number::currency($this->price);
     }

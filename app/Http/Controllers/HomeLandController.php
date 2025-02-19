@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use App\Models\Property;
 use App\Models\PropertyListingType;
 use App\Models\ContactAgent;
+use App\Models\Contact;
+use App\Mail\ContactMail;
 
 
 class HomeLandController extends Controller
@@ -14,10 +17,6 @@ class HomeLandController extends Controller
 
         $properties =Property::all();
         return view('homeland.index', compact('properties'));
-    }
-
-    public function contact(){
-        return view('homeland.contact');
     }
 
     public function buy(){
@@ -33,25 +32,10 @@ class HomeLandController extends Controller
 
     public function properties_listing_type($property_listing_type_id){
         $properties = PropertyListingType::find($property_listing_type_id)->properties;
+        //dd($properties);
         return view('homeland.index', compact('properties'));
     }
 
-    public function about(){
-        return view('homeland.about');
-    }
-
-    public function login(){
-        return view('homeland.login');
-    }
-
-    public function register(){
-        return view('homeland.register');
-    }
-
-    public function properties(){
-        $properties =Property::all();
-        return view('homeland.properties', compact('properties'));
-    }
 
     public function property_details(Request $request, $property_id){
 
@@ -82,4 +66,51 @@ class HomeLandController extends Controller
         $property =Property::find($property_id);
         return view('homeland.property_details', compact ('property'));
     }
+
+    public function contact(Request $request){
+        if($request->isMethod("POST")){
+            //validate the form data using Laravel's validation rules and messages.a
+            $request->validate([
+                'name' => 'required|string|max:255',
+                'email' => 'required|email|max:50',
+                'subject' => 'required|string|max:255',
+                'message' => 'required|string|max:1000',
+            ],[
+                'name.required' => 'The name field is required.',
+                'email.required' => 'The email field is required.',
+                'email.email' => 'The email must be a valid email address.',
+                'message.required' => 'The message field is required.',
+
+            ]);
+            $contact = new Contact();
+            $contact->name=$request->input('name');
+            $contact->email=$request->input('email');
+            $contact->subject=$request->input('subject');
+            $contact->message=$request->input('message');
+            $contact->save();
+
+            Mail::to('20031296@itcelaya.edu.mx')->send(new ContactMail($contact));
+            session()->now('message', 'Your message has been sent successfully!. Thank you!');
+        }
+        return view('homeland.contact');
+    }
+
+
+    public function about(){
+        return view('homeland.about');
+    }
+
+    public function login(){
+        return view('homeland.login');
+    }
+
+    public function register(){
+        return view('homeland.register');
+    }
+
+    // public function properties(){
+    //     $properties =Property::all();
+    //     return view('homeland.properties', compact('properties'));
+    // }
+
 }

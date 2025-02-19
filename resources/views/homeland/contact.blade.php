@@ -7,26 +7,38 @@
 
         <div class="col-md-12 col-lg-8 mb-5">
 
-
-
-          <form action="#" class="p-5 bg-white border">
-
+            @if (session()->has('message'))
+                <div class="alert alert-success">
+                    {{ session()->get('message') }}
+                </div>
+            @endif
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+          <form  action="{{ route('contact')}}" method="POST" class="p-5 bg-white border">
+            @csrf
             <div class="row form-group">
               <div class="col-md-12 mb-3 mb-md-0">
                 <label class="font-weight-bold" for="fullname">Full Name</label>
-                <input type="text" id="fullname" class="form-control" placeholder="Full Name">
+                <input type="text" id="fullname" class="form-control" placeholder="Full Name" name="name" value="{{ old('name') }}">
               </div>
             </div>
             <div class="row form-group">
               <div class="col-md-12">
                 <label class="font-weight-bold" for="email">Email</label>
-                <input type="email" id="email" class="form-control" placeholder="Email Address">
+                <input type="email" id="email" class="form-control" placeholder="Email Address" name="email" value="{{ old('email') }}">
               </div>
             </div>
             <div class="row form-group">
               <div class="col-md-12">
                 <label class="font-weight-bold" for="email">Subject</label>
-                <input type="text" id="subject" class="form-control" placeholder="Enter Subject">
+                <input type="text" id="subject" class="form-control" placeholder="Enter Subject" name="subject" value="{{ old('subject')}}">
               </div>
             </div>
 
@@ -34,7 +46,7 @@
             <div class="row form-group">
               <div class="col-md-12">
                 <label class="font-weight-bold" for="message">Message</label>
-                <textarea name="message" id="message" cols="30" rows="5" class="form-control" placeholder="Say hello to us"></textarea>
+                <textarea name="message" id="message" cols="30" rows="5" class="form-control" placeholder="Say hello to us" name="message">{{old('message')}}</textarea>
               </div>
             </div>
 
