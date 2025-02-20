@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="{{asset('css/animate.css')}}">
     <link rel="stylesheet" href="{{asset('fonts/flaticon/font/flaticon.css')}}">
     <link rel="stylesheet" href="{{asset('css/fl-bigmug-line.css')}}">
+    <link rel="stylesheet" href="{{asset('resource/css/styles.css')}}">
 
 
 

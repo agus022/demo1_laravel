@@ -18,6 +18,7 @@ Route::get('/services', [SiteController::class,'services']);
 
 Route::get('/', [HomeLandController::class,'index'])->name('home');
 Route::match(['get','post'], '/property_details/{property_id}', [HomeLandController::class,'property_details'])->name('property_details');
+Route::post('/property/{property_id}/review',[HomeLandController::class,'review'])->name('property_details_review');
 Route::get('/buy', [HomeLandController::class,'buy'])->name('buy');
 Route::get('/rent', [HomeLandController::class,'rent'])->name('rent');
 Route::get('/properties/{property_listing_type_id}', [HomeLandController::class,'properties_listing_type'])->name('properties_listing_type');

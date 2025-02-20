@@ -8,6 +8,7 @@ use App\Models\Property;
 use App\Models\PropertyListingType;
 use App\Models\ContactAgent;
 use App\Models\Contact;
+use App\Models\Review;
 use App\Mail\ContactMail;
 
 
@@ -64,7 +65,28 @@ class HomeLandController extends Controller
         }
 
         $property =Property::find($property_id);
-        return view('homeland.property_details', compact ('property'));
+        $reviews = $property->reviews()->latest()->get();
+        return view('homeland.property_details', compact ('property','reviews'));
+    }
+
+
+    public function review(Request $request, $property_id){
+        $request->validate([
+            'nameReview' => 'required|string|max:255',
+            'emailReview' => 'required|email|max:255',
+            'description' => 'required|string|max:1000',
+            'rating' => 'required|integer|between:1,5',
+        ]);
+
+        $review = new Review();
+        $review->name = $request->input('nameReview');
+        $review->email = $request->input('emailReview');
+        $review->description = $request->input('description');
+        $review->rating = $request->input('rating');
+        $review->property_id = $property_id;
+        $review->save();
+
+        return back()->with('message', 'Your review has been submitted successfully!');
     }
 
     public function contact(Request $request){
@@ -89,7 +111,12 @@ class HomeLandController extends Controller
             $contact->message=$request->input('message');
             $contact->save();
 
-            Mail::to('20031296@itcelaya.edu.mx')->send(new ContactMail($contact));
+            Mail::to('20031296@itcelaya.edu.mx')->send(new ContactMail(
+                $request->input("name"),
+                $request->input("email"),
+                $request->input("subject"),
+                $request->input("message")
+            ));
             session()->now('message', 'Your message has been sent successfully!. Thank you!');
         }
         return view('homeland.contact');

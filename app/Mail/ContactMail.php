@@ -14,27 +14,32 @@ use App\Models\Contact;
 class ContactMail extends Mailable
 {
     use Queueable, SerializesModels;
-    public $contact;
+    public $name;
+    public $email;
+    public $subject;
+    public $message;
 
 
     /**
      * Create a new message instance.
      */
-    public function __construct(Contact $contact)
+    public function __construct($name,$email,$subject,$message)
     {
-        //
-        $this->contact = $contact;
+        $this->name = $name;
+        $this->email = $email;
+        $this->subject = $subject;
+        $this->message = $message;
     }
 
     /**
      * Get the message envelope.
-     */
-    public function envelope(): Envelope
-    {
-        return new Envelope(
-            subject: 'Contact Mail from '. $this->contact->name,
-        );
-    }
+      */
+    // public function envelope(): Envelope
+    // {
+    //     return new Envelope(
+    //         subject: 'Contact Mail from '. $this->contact->name,
+    //     );
+    // }
 
     /**
      * Get the message content definition.

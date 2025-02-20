@@ -1,6 +1,73 @@
 @extends('layouts.homeland')
 
 @section('content')
+    <style>
+        .rating {
+            display: inline-block;
+            position: relative;
+            height: 50px;
+            line-height: 50px;
+            font-size: 50px;
+        }
+
+        .rating label {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            cursor: pointer;
+        }
+
+        .rating label:last-child {
+            position: static;
+        }
+
+        .rating label:nth-child(1) {
+            z-index: 5;
+        }
+
+        .rating label:nth-child(2) {
+            z-index: 4;
+        }
+
+        .rating label:nth-child(3) {
+            z-index: 3;
+        }
+
+        .rating label:nth-child(4) {
+            z-index: 2;
+        }
+
+        .rating label:nth-child(5) {
+            z-index: 1;
+        }
+
+        .rating label input {
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+        }
+
+        .rating label .icon {
+            float: left;
+            color: transparent;
+        }
+
+        .rating label:last-child .icon {
+            color: #000;
+        }
+
+        .rating:not(:hover) label input:checked~.icon,
+        .rating:hover label:hover input~.icon {
+            color: #09f;
+        }
+
+        .rating label input:focus:not(:checked)~.icon:last-child {
+            color: #000;
+            text-shadow: 0 0 5px #09f;
+        }
+    </style>
     <div class="site-blocks-cover inner-page-cover overlay" style="background-image: url(images/hero_bg_2.jpg);"
         data-aos="fade" data-stellar-background-ratio="0.5">
         <div class="container">
@@ -114,26 +181,29 @@
                             @csrf
                             <div class="form-group">
                                 <label for="name">Name</label>
-                                <input type="text" id="name" name="name" class="form-control" value="{{  old('name') }}">
+                                <input type="text" id="name" name="name" class="form-control"
+                                    value="{{ old('name') }}">
                             </div>
                             <div class="form-group">
                                 <label for="email">Email</label>
-                                <input type="email" id="email" name="email" class="form-control" value="{{ old('email') }}">
+                                <input type="email" id="email" name="email" class="form-control"
+                                    value="{{ old('email') }}">
                             </div>
                             <div class="form-group">
                                 <label for="phone">Phone</label>
-                                <input type="text" id="phone" name="phone" class="form-control" value="{{  old('phone') }}">
+                                <input type="text" id="phone" name="phone" class="form-control"
+                                    value="{{ old('phone') }}">
                             </div>
                             <div class="form-group">
                                 <label for="phone">Message</label>
-                                <textarea id="message" name="message" class="form-control" rows="5">{{  old('message') }}</textarea>
+                                <textarea id="message" name="message" class="form-control" cols="30" rows="10">{{ old('message') }}</textarea>
                             </div>
                             <div class="form-group">
                                 <input type="submit" id="phone" class="btn btn-primary" value="Send Message">
                             </div>
                         </form>
                     </div>
-
+                    {{--
                     <div class="bg-white widget border rounded">
                         <h3 class="h4 text-black widget-title mb-3 ml-0">Share</h3>
                         <div class="px-3" style="margin-left: -15px;">
@@ -144,13 +214,131 @@
                             <a href="https://www.linkedin.com/sharing/share-offsite/?url="
                                 class="pt-3 pb-3 pr-3 pl-0"><span class="icon-linkedin"></span></a>
                         </div>
-                    </div>
+                    </div> --}}
 
                 </div>
 
             </div>
         </div>
     </div>
+    <div class="site-section">
+        <div class="container">
+            <h2>Give your review: </h2>
+            <div class="row">
+                <div class="col-md-12 col-lg-8 mb-5">
+                    @if (session()->has('message'))
+                        <div class="alert alert-success">
+                            {{ session()->get('message') }}
+                        </div>
+                    @endif
+
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+                    <form action="{{ route('property_details_review', $property->id) }}" method="POST"
+                        class="p-5 bg-white border">
+                        @csrf
+                        <div class="row form-group">
+                            <div class="col-md-12 mb-3 mb-md-0">
+                                <label class="font-weight-bold" for="fullname">Full Name: </label>
+                                <input type="text" id="fullname" class="form-control" placeholder="Full Name"
+                                    name="nameReview" value="{{ old('nameReview') }}">
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-12">
+                                <label class="font-weight-bold" for="email">Email</label>
+                                <input type="email" id="email" class="form-control" placeholder="Email Address"
+                                    name="emailReview" value="{{ old('emailReview') }}">
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-12">
+                                <label class="font-weight-bold" for="message">Review</label>
+                                <textarea id="message" cols="30" rows="5" class="form-control" placeholder="Review"
+                                    name="description">{{ old('description') }}</textarea>
+                            </div>
+                        </div>
+                        <!-- SISTEMA DE ESTRELLAS -->
+                        <div class="row form-group">
+                            <div class="col-md-12">
+                                <label class="font-weight-bold">Rating:</label><br>
+                                <div class="rating">
+                                    <label>
+                                        <input type="radio" name="rating" value="1" required />
+                                        <span class="icon">★</span>
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="rating" value="2" required />
+                                        <span class="icon">★</span>
+                                        <span class="icon">★</span>
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="rating" value="3" required />
+                                        <span class="icon">★</span>
+                                        <span class="icon">★</span>
+                                        <span class="icon">★</span>
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="rating" value="4" required />
+                                        <span class="icon">★</span>
+                                        <span class="icon">★</span>
+                                        <span class="icon">★</span>
+                                        <span class="icon">★</span>
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="rating" value="5" required />
+                                        <span class="icon">★</span>
+                                        <span class="icon">★</span>
+                                        <span class="icon">★</span>
+                                        <span class="icon">★</span>
+                                        <span class="icon">★</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-12">
+                                <input type="submit" value="Send Review" class="btn btn-primary  py-2 px-4 rounded-0">
+                            </div>
+                        </div>
+                    </form>
+                    <!-- MOSTRAR REVIEWS -->
+                    <h3 class="mt-5">Reviews:</h3>
+                    @if ($reviews->isEmpty())
+                        <p>No reviews yet. Be the first to leave a review!</p>
+                    @else
+                        @foreach ($reviews as $review)
+                            <div class="review p-3 border rounded mb-3">
+                                <h4>{{ $review->name }}
+                                    @php
+                                        $fullStars = floor($review->rating); // Estrellas llenas
+                                        $emptyStars = 5 - $fullStars; // Estrellas vacías
+                                    @endphp
+
+                                    @for ($i = 0; $i < $fullStars; $i++)
+                                        <span class="star filled text-warning">★</span> <!-- Estrella llena -->
+                                    @endfor
+                                    @for ($i = 0; $i < $emptyStars; $i++)
+                                        <span class="star empty text-secondary">☆</span> <!-- Estrella vacía -->
+                                    @endfor
+                                </h4>
+                                <p>{{ $review->description }}</p>
+                                <small class="text-muted">{{ $review->created_at->format('d M, Y') }}</small>
+                            </div>
+                        @endforeach
+                    @endif
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     <div class="site-section site-section-sm bg-light">
         <div class="container">

@@ -58,28 +58,28 @@
 <body>
   <div class="container">
     <div class="header">
-      <h1>Nuevo Mensaje de Contacto</h1>
+      <h1>Mensaje nuevo de contacto</h1>
     </div>
     <div class="content">
       <div class="field">
         <label>Full Name:</label>
-        <span>{{$contact->name }}</span>
+        <span>{{$name}}</span>
       </div>
       <div class="field">
         <label>Email:</label>
-        <span>{{$contact->email}}</span>
+        <span>{{$email}}</span>
       </div>
       <div class="field">
         <label>Subject:</label>
-        <span>{{$contact->subject }}</span>
+        <span>{{$subject}}</span>
       </div>
       <div class="field">
         <label>Message:</label>
-        <span>{{$contact->message}}</span>
+        <span>{{$message}}</span>
       </div>
     </div>
     <div class="footer">
-      Este correo ha sido generado automáticamente.
+      HomeLand Company &copy; 2025
     </div>
   </div>
 </body>
