@@ -318,15 +318,15 @@
                             <div class="review p-3 border rounded mb-3">
                                 <h4>{{ $review->name }}
                                     @php
-                                        $fullStars = floor($review->rating); // Estrellas llenas
-                                        $emptyStars = 5 - $fullStars; // Estrellas vacías
+                                        $fullStars = floor($review->rating);
+                                        $emptyStars = 5 - $fullStars;
                                     @endphp
 
                                     @for ($i = 0; $i < $fullStars; $i++)
-                                        <span class="star filled text-warning">★</span> <!-- Estrella llena -->
+                                        <span class="star filled text-warning">★</span>
                                     @endfor
                                     @for ($i = 0; $i < $emptyStars; $i++)
-                                        <span class="star empty text-secondary">☆</span> <!-- Estrella vacía -->
+                                        <span class="star empty text-secondary">☆</span>
                                     @endfor
                                 </h4>
                                 <p>{{ $review->description }}</p>
