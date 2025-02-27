@@ -177,7 +177,10 @@
                                 </ul>
                             </div>
                         @endif
-                        <form action="" class="form-contact-agent" method="POST">
+                        <div id="successAlert" class="alert alert-success d-none">
+                            Contact request sent successfully. We will get back to you shortly.
+                        </div>
+                        <form action="" class="form-contact-agent" method="POST" id="formContactAgent">
                             @csrf
                             <div class="form-group">
                                 <label for="name">Name</label>
@@ -199,7 +202,7 @@
                                 <textarea id="message" name="message" class="form-control" cols="30" rows="10">{{ old('message') }}</textarea>
                             </div>
                             <div class="form-group">
-                                <input type="submit" id="phone" class="btn btn-primary" value="Send Message">
+                                <input type="submit" id="btnSendContactAgentMessage" class="btn btn-primary" value="Send Message">
                             </div>
                         </form>
                     </div>

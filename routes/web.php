@@ -2,6 +2,7 @@
 use App\Http\Controllers\SiteController;
 use App\Http\Controllers\HomeLandController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdminPorpertiesController;
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -26,4 +27,8 @@ Route::get('/about', [HomeLandController::class,'about'])->name('about');
 Route::match(['get','post'],'/contact', [HomeLandController::class,'contact'])->name('contact');
 Route::get('/login', [HomeLandController::class,'login'])->name('login');
 Route::get('/register', [HomeLandController::class,'register'])->name('register');
+
+Route::get('/admin/properties', [AdminPorpertiesController::class,'index'])->name('index_admin_properties');
+
+Route::get('/properties/datatables', [AdminPorpertiesController::class,'properties_datatables'])->name('index_admin_propertie_datatables');
 

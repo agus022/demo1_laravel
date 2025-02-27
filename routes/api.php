@@ -17,4 +17,3 @@ Route::get('/demo1', function () {
 
 Route::get('/properties',[PropertiesAPIController::class,'properties'])->name('api.properties');
 Route::post('/contact_agent',[PropertiesAPIController::class,'saveContactAgent'])->name('api.contact_agent');
-
