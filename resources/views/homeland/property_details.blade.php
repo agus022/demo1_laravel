@@ -181,6 +181,7 @@
                             Contact request sent successfully. We will get back to you shortly.
                         </div>
                         <form action="" class="form-contact-agent" method="POST" id="formContactAgent">
+                            {{-- <input type="hidden" name="property_id" id="property_id" value="{{$property->id}}"> --}}
                             @csrf
                             <div class="form-group">
                                 <label for="name">Name</label>

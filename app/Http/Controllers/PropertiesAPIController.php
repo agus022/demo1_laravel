@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Property;
+use Validator;
+use App\Models\ContactAgent;
+
 
 class PropertiesAPIController extends Controller
 {

@@ -2,36 +2,34 @@ $(document).ready(function() {
     $("#btnSendContactAgentMessage").click((event) => {
         event.preventDefault();//que cancele la informacion enviada, para recuperar la informacion antes de enviarla
         //alert("Form submitted successfully!");
-        //ajax request
+
+        //AJAX REQUEST
         const formData = {
             "name": $("#name").val(),
             "email": $("#email").val(),
             "phone": $("#phone").val(),
             "message": $("#message").val()
+            //"porperty_id": $("#porperty_id").val()
         };
         $.ajax({
+            type:"post",
             url:"/api/contact_agent",
-            type:"POST",
-            dataType: "json",
-            headers: { "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content") },
-            data: JSON.stringify(formData),
+            data: formData,
             success:(response)=>{
-                console.log(">>>>>>>>> Éxito <<<<<<<<<", response);
-                $("#formContactAgentMessage").trigger("reset");
+                $("#formContactAgent").trigger("reset");
+                alert("Form submitted successfully!");
                 $("#successAlert").removeClass("d-none");
                 setTimeout(() => {
                     $("#successAlert").addClass("d-none");
                 }, 5000);
             },
             error:(errors)=>{
-                console.log(errors);
+                console.error(errors);
             }
         });
     });
 
     let table = new DataTable("#tblProperties1");
-
-
     new DataTable('#tblProperties2', {
         ajax: 'api/properties/datatables',
         columns: [
