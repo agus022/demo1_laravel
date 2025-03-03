@@ -29,6 +29,3 @@ Route::get('/login', [HomeLandController::class,'login'])->name('login');
 Route::get('/register', [HomeLandController::class,'register'])->name('register');
 
 Route::get('/admin/properties', [AdminPorpertiesController::class,'index'])->name('index_admin_properties');
-
-Route::get('/properties/datatables', [AdminPorpertiesController::class,'properties_datatables'])->name('index_admin_propertie_datatables');
-

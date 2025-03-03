@@ -17,3 +17,6 @@ Route::get('/demo1', function () {
 
 Route::get('/properties',[PropertiesAPIController::class,'properties'])->name('api.properties');
 Route::post('/contact_agent',[PropertiesAPIController::class,'saveContactAgent'])->name('api.contact_agent');
+Route::get('/properties/datatables', [PropertiesAPIController::class,'properties_datatables'])->name('api.properties_datatables');
+
+

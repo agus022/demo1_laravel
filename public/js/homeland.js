@@ -30,8 +30,9 @@ $(document).ready(function() {
     });
 
     let table = new DataTable("#tblProperties1");
+
     new DataTable('#tblProperties2', {
-        ajax: 'api/properties/datatables',
+        ajax: '/api/properties/datatables',
         columns: [
             { data: 'address' },
             { data: 'price' },
