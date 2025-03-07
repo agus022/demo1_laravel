@@ -3,6 +3,8 @@ use App\Http\Controllers\SiteController;
 use App\Http\Controllers\HomeLandController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminPorpertiesController;
+use App\Http\Controllers\EmployeesController;
+
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -29,3 +31,4 @@ Route::get('/login', [HomeLandController::class,'login'])->name('login');
 Route::get('/register', [HomeLandController::class,'register'])->name('register');
 
 Route::get('/admin/properties', [AdminPorpertiesController::class,'index'])->name('index_admin_properties');
+Route::get('/admin/employees', [EmployeesController::class,'index'])->name('index_admin_employees');
