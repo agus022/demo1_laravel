@@ -29,8 +29,6 @@ $(document).ready(function() {
         });
     });
 
-    let table = new DataTable("#tblProperties1");
-
     new DataTable('#tblProperties2', {
         ajax: '/api/properties/datatables',
         columns: [
@@ -41,4 +39,78 @@ $(document).ready(function() {
             { data: 'city.name' },
         ]
     });
+
+    //CONVERTIR A LA TABLA DE DATA
+    //let table = new DataTable("#tblProperties1");
+
+    $('#genero').select2({
+        width: '100%',
+        placeholder: "Select Gender",
+        allowClear: true
+    });
+
+    // Inicializa DataTables con AJAX y soporte de filtro dinámico
+    let table = new DataTable('#tblEmployees1', {
+        ajax: {
+            url: 'http://localhost:3000/api/v1/employees_gender',
+            data: function (d) {
+                d.gender = $("#genero").val(); // Envía el género seleccionado
+            }
+        },
+        columns: [
+            { data: 'id' },
+            { data: 'first_name' },
+            { data: 'email' },
+            { data: 'gender' },
+            { data: 'department' },
+            { data: 'salary' },
+        ]
+    });
+
+    // Cuando cambia el select de género, actualiza la tabla
+    $("#genero").change(function() {
+        table.ajax.reload();
+    });
+
+
+    // $("#btnGetEmployeesUsingFetch").click((event) => {
+    //     new DataTable('#tblEmployees1', {
+    //         ajax: {
+    //             url: 'http://localhost:3000/api/v1/employees/',
+    //         },
+    //         columns: [
+    //             { data: 'id' },
+    //             { data: 'first_name'},
+    //             { data: 'email' },
+    //             { data: 'gender' },
+    //             { data: 'department' },
+    //             { data: 'salary' },
+    //         ],
+    //         paging: true,
+    //         searching: true,
+    //         ordering: true,
+    //         responsive: true
+    //     });
+
+    // });
+
+    // $('#list-types').select2({
+    //     ajax: {
+    //         url: '/api/properties',
+    //         dataType: 'json',
+    //         delay: 250,
+    //         processResults: function (data) {
+    //             return {
+    //                 results: data.map(item=>({
+    //                     id: item.list_type.id,
+    //                     text:item.list_type.name
+    //                 }))
+    //             };
+    //         },
+    //         cache: true
+    //     },
+    //     allowClear: true,
+
+    // });
+
 });

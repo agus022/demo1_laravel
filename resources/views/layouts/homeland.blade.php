@@ -19,13 +19,11 @@
     <link rel="stylesheet" href="{{asset('fonts/flaticon/font/flaticon.css')}}">
     <link rel="stylesheet" href="{{asset('css/fl-bigmug-line.css')}}">
     <link rel="stylesheet" href="{{asset('resource/css/styles.css')}}">
-
-
-
     <link rel="stylesheet" href="{{asset('css/aos.css')}}">
-
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
     <link rel="stylesheet" href="{{asset("//cdn.datatables.net/2.2.2/css/dataTables.dataTables.min.css")}}">
+    <link href="{{asset('//cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css')}}" rel="stylesheet" />
+
 
 
   </head>
@@ -199,6 +197,8 @@
   <script src="{{asset('js/main.js')}}"></script>
   <script src="{{asset('js/homeland.js')}}"></script>
   <script src="{{asset("//cdn.datatables.net/2.2.2/js/dataTables.min.js")}}"></script>
+  <script src="{{asset("//cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js")}}"></script>
+
 
 
   </body>

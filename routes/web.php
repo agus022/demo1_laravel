@@ -21,14 +21,17 @@ Route::get('/services', [SiteController::class,'services']);
 
 Route::get('/', [HomeLandController::class,'index'])->name('home');
 Route::match(['get','post'], '/property_details/{property_id}', [HomeLandController::class,'property_details'])->name('property_details');
-Route::post('/property/{property_id}/review',[HomeLandController::class,'review'])->name('property_details_review');
 Route::get('/buy', [HomeLandController::class,'buy'])->name('buy');
 Route::get('/rent', [HomeLandController::class,'rent'])->name('rent');
-Route::get('/properties/{property_listing_type_id}', [HomeLandController::class,'properties_listing_type'])->name('properties_listing_type');
 Route::get('/about', [HomeLandController::class,'about'])->name('about');
-Route::match(['get','post'],'/contact', [HomeLandController::class,'contact'])->name('contact');
 Route::get('/login', [HomeLandController::class,'login'])->name('login');
 Route::get('/register', [HomeLandController::class,'register'])->name('register');
+Route::get('/list_view', [HomeLandController::class,'index_list'])->name('list_view');
+
+Route::post('/property/{property_id}/review',[HomeLandController::class,'review'])->name('property_details_review');
+Route::get('/properties/{property_listing_type_id}', [HomeLandController::class,'properties_listing_type'])->name('properties_listing_type');
+Route::match(['get','post'],'/contact', [HomeLandController::class,'contact'])->name('contact');
 
 Route::get('/admin/properties', [AdminPorpertiesController::class,'index'])->name('index_admin_properties');
 Route::get('/admin/employees', [EmployeesController::class,'index'])->name('index_admin_employees');
+Route::get('/admin/employees_fetch', [EmployeesController::class,'employees_fetch'])->name('index_admin_employees_fetch');

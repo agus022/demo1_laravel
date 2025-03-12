@@ -14,4 +14,9 @@ class EmployeesController extends Controller
         return view('homeland.admin.homeland.indexEmployees', compact('employees'));
         //dd($response->object());
     }
+
+    public function employees_fetch(){
+        return view ('homeland.admin.homeland.indexEmployeesFetch');
+
+    }
 }

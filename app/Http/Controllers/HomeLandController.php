@@ -20,6 +20,12 @@ class HomeLandController extends Controller
         return view('homeland.index', compact('properties'));
     }
 
+    public function index_list(){
+
+        $properties =Property::all();
+        return view('homeland.view-list', compact('properties'));
+    }
+
     public function buy(){
         $properties = Property::where("offer_type","For Sale")->get();
         return view('homeland.buy', compact('properties'));

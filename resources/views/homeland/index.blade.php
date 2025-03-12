@@ -10,10 +10,10 @@
                             <label for="list-types">Listing Types</label>
                             <div class="select-wrap">
                                 <span class="icon icon-arrow_drop_down"></span>
-                                <select name="list-types" id="list-types" class="form-control d-block rounded-0">
-                                    <option value="">Condo</option>
-                                    <option value="">Commercial Building</option>
-                                    <option value="">Land Property</option>
+                                <select name="list-types" id="list-types" class="form-control select2">
+                                    <option value="condo">Condo</option>
+                                    <option value="commercial_building">Commercial Building</option>
+                                    <option value="land_property">Land Property</option>
                                 </select>
                             </div>
                         </div>
@@ -21,10 +21,10 @@
                             <label for="offer-types">Offer Type</label>
                             <div class="select-wrap">
                                 <span class="icon icon-arrow_drop_down"></span>
-                                <select name="offer-types" id="offer-types" class="form-control d-block rounded-0">
-                                    <option value="">For Sale</option>
-                                    <option value="">For Rent</option>
-                                    <option value="">For Lease</option>
+                                <select name="offer-types" id="offer-types" class="form-control select2">
+                                    <option value="for_sale">For Sale</option>
+                                    <option value="for_rent">For Rent</option>
+                                    <option value="for_lease">For Lease</option>
                                 </select>
                             </div>
                         </div>
@@ -32,12 +32,12 @@
                             <label for="select-city">Select City</label>
                             <div class="select-wrap">
                                 <span class="icon icon-arrow_drop_down"></span>
-                                <select name="select-city" id="select-city" class="form-control d-block rounded-0">
-                                    <option value="">New York</option>
-                                    <option value="">Brooklyn</option>
-                                    <option value="">London</option>
-                                    <option value="">Japan</option>
-                                    <option value="">Philippines</option>
+                                <select name="select-city" id="select-city" class="form-control select2">
+                                    <option value="new_york">New York</option>
+                                    <option value="brooklyn">Brooklyn</option>
+                                    <option value="london">London</option>
+                                    <option value="japan">Japan</option>
+                                    <option value="celaya">Celaya</option>
                                 </select>
                             </div>
                         </div>
@@ -54,7 +54,7 @@
                         <div class="mr-auto">
                             <a href="index.html" class="icon-view view-module active"><span
                                     class="icon-view_module"></span></a>
-                            <a href="view-list.html" class="icon-view view-list"><span class="icon-view_list"></span></a>
+                            <a href="/list_view" class="icon-view view-list"><span class="icon-view_list"></span></a>
 
                         </div>
                         <div class="ml-auto d-flex align-items-center">
@@ -102,7 +102,7 @@
                             </a>
                             <div class="p-4 property-body">
                                 <a href="#" class="property-favorite"><span class="icon-heart-o"></span></a>
-                                <h2 class="property-title"><a href="property-details.html">{{ $propertie->address }}</a>
+                                <h2 class="property-title"><a href="{{ route('property_details', $propertie->id) }}">{{ $propertie->address }}</a>
                                 </h2>
                                 <span class="property-location d-block mb-3"><span class="property-icon icon-room"></span>
                                 {{$propertie->description}}</span>
