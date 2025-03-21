@@ -93,24 +93,4 @@ $(document).ready(function() {
     //     });
 
     // });
-
-    // $('#list-types').select2({
-    //     ajax: {
-    //         url: '/api/properties',
-    //         dataType: 'json',
-    //         delay: 250,
-    //         processResults: function (data) {
-    //             return {
-    //                 results: data.map(item=>({
-    //                     id: item.list_type.id,
-    //                     text:item.list_type.name
-    //                 }))
-    //             };
-    //         },
-    //         cache: true
-    //     },
-    //     allowClear: true,
-
-    // });
-
 });
